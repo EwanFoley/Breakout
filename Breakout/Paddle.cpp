@@ -33,6 +33,19 @@ void Paddle::moveRight(float dt)
     }
 }
 
+void Paddle::moveMouse(float dt) {
+    sf::VideoMode screen = sf::VideoMode::getDesktopMode();
+    float position = sf::Mouse::getPosition().x;
+
+    if (position < screen.width/2) {
+        _sprite.move(sf::Vector2f(-dt * PADDLE_SPEED, 0));
+    }
+
+    if (position > screen.width/2) {
+        _sprite.move(sf::Vector2f(dt * PADDLE_SPEED, 0));
+    }
+}
+
 void Paddle::update(float dt)
 {
     if (_timeInNewSize > 0)
